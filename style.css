@@ -1,0 +1,468 @@
+/* 1. Configuración de Base e Imagen de Fondo */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', 'Segoe UI', Roboto, sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    /* Fondo con textura metálica (reemplaza 'fondo-metal.jpg' con tu archivo) */
+    background: url('fondo.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* 2. Encabezado con Efecto Placa de Metal */
+header {
+    background: linear-gradient(145deg, #7f8c8d, #bdc3c7, #95a5a6);
+    color: #fff;
+    padding: 4rem 1rem;
+    text-align: center;
+    border-bottom: 4px solid #2c3e50;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+header h1 {
+    font-size: 3rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    /* Efecto de grabado en el metal */
+    text-shadow: 2px 2px 0px rgba(0,0,0,0.2), -1px -1px 0px rgba(255,255,255,0.5);
+}
+
+.slogan {
+    font-size: 1.2rem;
+    font-weight: 300;
+    color: #2c3e50;
+    margin-top: 10px;
+}
+
+/* 3. Contenedores de Sección (Efecto Vidrio Esmerilado sobre Metal) */
+section {
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 3rem;
+    scroll-margin-top: 100px;
+    /* 1. Fondo: Un gradiente muy suave que simula el reflejo del metal */
+    background: linear-gradient(145deg, rgba(235, 237, 240, 0.9), rgba(189, 195, 199, 0.8));
+    
+    /* 2. Efecto Blur: Hace que el fondo de la página se vea borroso detrás (vidrio industrial) */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    /* 3. Bordes: Un borde fino y claro arriba para dar relieve */
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 4px; /* Esquinas apenas redondeadas, más profesional */
+
+    /* 4. Sombra: Para que la sección parezca que "flota" sobre el metal */
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.2), 
+                -5px -5px 15px rgba(255, 255, 255, 0.3);
+    
+    color: #2c3e50;
+}
+
+/* Títulos de sección con estilo de grabado */
+h2 {
+    color: #1a1a1a;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 3px solid #7f8c8d;
+    padding-bottom: 10px;
+    margin-bottom: 30px;
+    display: inline-block;
+}
+
+/* 4. Columnas de Servicios (Efecto Bloque de Aluminio) */
+#servicios-productos {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.columna {
+    flex: 1;
+    min-width: 280px;
+    padding: 25px;
+    background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+    border: 1px solid #dcdde1;
+    border-radius: 4px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.columna:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 25px rgba(0,0,0,0.1);
+}
+
+/* 5. Botón Metálico Brillante */
+.boton-metalico {
+    display: inline-block;
+    padding: 15px 35px;
+    margin-top: 20px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #2c3e50;
+    border-radius: 3px;
+    border: 1px solid #7f8c8d;
+    cursor: pointer;
+    /* Gradiente de acero pulido */
+    background: linear-gradient(180deg, #ffffff 0%, #d1d1d1 50%, #a1a1a1 100%);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.8);
+    transition: 0.3s;
+}
+
+.boton-metalico:hover {
+    background: linear-gradient(180deg, #ffffff 0%, #e8e8e8 50%, #c0c0c0 100%);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    transform: scale(1.05);
+}
+
+/* Contenedor principal que oculta lo que se sale de los bordes */
+.galeria-container {
+    width: 100%;
+    overflow: hidden;
+    background: #e0e0e0;
+    padding: 20px 0;
+    border-radius: 4px;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.2);
+}
+
+/* La "cinta" que contiene las imágenes */
+.galeria-wrapper {
+    display: flex;
+    width: calc(250px * 10); /* Ajusta según el número de fotos */
+    animation: deslizar 20s linear infinite;
+}
+
+.galeria-wrapper img {
+    width: 300px;
+    height: 200px;
+    object-fit: cover;
+    margin: 0 10px;
+    border: 2px solid #fff;
+    border-radius: 4px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    filter: brightness(0.9);
+    transition: 0.3s;
+}
+
+/* Pausa el movimiento cuando el usuario pone el mouse encima */
+.galeria-wrapper:hover {
+    animation-play-state: paused;
+}
+
+.galeria-wrapper img:hover {
+    filter: brightness(1.1);
+    transform: scale(1.05);
+}
+
+/* Definición de la animación */
+@keyframes deslizar {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(calc(-320px * 4)); /* Se mueve el ancho de 4 fotos */
+    }
+}
+
+/* 6. Galería de Fotos */
+.grid-galeria {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+}
+
+.grid-galeria img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border: 3px solid #fff;
+    border-radius: 2px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* 7. Footer Industrial */
+footer {
+    background: #1a1a1a;
+    color: #bdc3c7;
+    text-align: center;
+    padding: 2rem;
+    margin-top: 50px;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    section { margin: 20px; padding: 1.5rem; }
+    header h1 { font-size: 2rem; }
+
+    
+}
+/* Estilo del Botón Flotante */
+.whatsapp-float {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #25d366;
+    color: #fff;
+    border-radius: 50px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    z-index: 1000;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.4);
+    transition: all 0.3s ease;
+    border: 1px solid #1ebd59;
+}
+
+.whatsapp-icon {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+}
+
+.whatsapp-float span {
+    font-weight: bold;
+    font-size: 14px;
+    text-transform: uppercase;
+}
+
+/* Efecto al pasar el mouse */
+.whatsapp-float:hover {
+    transform: scale(1.1) translateY(-5px);
+    background-color: #128c7e;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+}
+
+/* Animación de pulso para llamar la atención */
+@keyframes pulse-whatsapp {
+    0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+    70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+}
+
+.whatsapp-float {
+    animation: pulse-whatsapp 2s infinite;
+}
+/* Contenedor flexible para alinear texto y mapa */
+.contacto-flex {
+    display: flex;
+    flex-wrap: wrap; /* Para móviles */
+    gap: 40px;
+    align-items: flex-start; /* Alinea el texto a la parte superior */
+}
+
+.info-contacto {
+    flex: 1; /* Ocupa el espacio disponible */
+    min-width: 300px;
+}
+
+.info-contacto h3 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+}
+
+.info-contacto p {
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+    color: #333;
+    display: flex;
+    align-items: center;
+}
+
+/* El marco que cuadra el mapa perfectamente */
+.contenedor-mapa {
+    flex: 1.5; /* Ocupa más espacio que el texto */
+    min-width: 300px;
+    border: 3px solid #bdc3c7; /* Marco tipo acero */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    border-radius: 8px;
+    overflow: hidden; /* Corta lo que sobresale */
+    
+    /* Esta es la propiedad mágica */
+    aspect-ratio: 16 / 9.5; /* Mantiene la proporción de cine */
+}
+
+/* Asegura que el iframe llene su contenedor */
+.contenedor-mapa iframe {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Contenedor flexible para alinear texto e imagen */
+.welcome-flex {
+    display: flex;
+    align-items: center; /* Centra verticalmente */
+    gap: 40px; /* Espacio entre texto e imagen */
+    flex-wrap: wrap; /* Para móviles */
+}
+
+.welcome-text {
+    flex: 1.2; /* El texto ocupa un poco más de espacio */
+    min-width: 300px;
+}
+
+.welcome-text p {
+    font-size: 1.1rem;
+    color: #333;
+    margin-bottom: 15px;
+    line-height: 1.7;
+}
+
+/* Contenedor de la imagen con efecto industrial */
+.welcome-image-container {
+    flex: 1; /* La imagen ocupa el resto del espacio */
+    min-width: 300px;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    padding: 10px;
+    background: linear-gradient(145deg, rgba(235, 237, 240, 0.4), rgba(189, 195, 199, 0.3));
+    border-radius: 8px;
+    box-shadow: inset 0 0 15px rgba(0,0,0,0.1);
+}
+
+/* Estilo de la foto con bordes transparentes */
+.foto-taller {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 6px;
+    
+    /* EFECTO CLAVE: Máscara de transparencia en los bordes */
+    -webkit-mask-image: radial-gradient(circle, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%);
+    mask-image: radial-gradient(circle, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%);
+    
+    /* Filtro sutil para que combine con el metal */
+    filter: brightness(1.05) contrast(1.02);
+    transition: all 0.3s ease;
+}
+
+/* Efecto al pasar el mouse sobre la foto */
+.foto-taller:hover {
+    filter: brightness(1.1);
+    transform: scale(1.02);
+}
+
+/* Header con distribución de tres partes para centrar el título */
+.header-minimal {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    background: rgba(44, 62, 80, 0.05); /* Fondo casi invisible */
+    border-bottom: 1px solid rgba(127, 140, 141, 0.3); /* Línea divisoria muy fina */
+    backdrop-filter: blur(5px);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+/* El título siempre al centro */
+.header-title h1 {
+    font-size: 1.8rem;
+    color: #2c3e50;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-weight: 300; /* Más fino para elegancia */
+}
+
+/* Espaciador para equilibrar el flexbox */
+.header-spacer {
+    flex: 1;
+}
+
+/* Menú a la derecha */
+.header-nav {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.header-nav ul {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+    margin: 0;
+    padding: 0;
+}
+
+/* Enlaces sutiles: sin cuadros ni sombras */
+.header-nav a {
+    text-decoration: none;
+    color: #7f8c8d; /* Gris suave */
+    font-size: 0.85rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: color 0.3s ease, border-bottom 0.3s ease;
+    padding: 5px 0;
+    border-bottom: 2px solid transparent;
+}
+
+/* Efecto sutil al pasar el mouse: solo cambia el color y aparece una línea */
+.header-nav a:hover {
+    color: #2c3e50; /* Oscurece un poco */
+    border-bottom: 2px solid #3498db; /* Una línea fina de acento */
+}
+
+/* Ajuste para móviles */
+@media (max-width: 900px) {
+    .header-minimal {
+        flex-direction: column;
+        text-align: center;
+    }
+    .header-spacer { display: none; }
+    .header-nav { justify-content: center; margin-top: 15px; }
+}
+/* Contenedor de indicadores (reemplaza al antiguo .header-spacer) */
+.header-indicators {
+    flex: 1;
+    display: flex;
+    gap: 15px;
+    justify-content: flex-start;
+}
+
+.indicator-item {
+    background: #1a1a1a; /* Fondo negro tipo pantalla */
+    padding: 5px 10px;
+    border-radius: 3px;
+    border: 1px solid #7f8c8d;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 70px;
+}
+
+.indicator-item .label {
+    font-size: 0.65rem;
+    color: #bdc3c7;
+    text-transform: uppercase;
+    line-height: 1;
+    margin-bottom: 2px;
+}
+
+.indicator-item .value {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.9rem;
+    color: #00ff00; /* Verde digital */
+    font-weight: bold;
+}
+
+/* Ajuste para el estado compacto (cuando bajas) */
+.header-minimal.compacto .indicator-item {
+    transform: scale(0.85); /* Se achican un poco */
+    margin-right: -10px;
+}
