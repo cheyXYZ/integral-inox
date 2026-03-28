@@ -9,20 +9,20 @@
 </head>
 <body>
 
-   <header class="header-minimal">
+ <header class="header-minimal">
     <div class="header-indicators">
-        <div class="indicator-item">
-            <span class="label">USD</span>
-            <span id="valor-dolar" class="value">...</span>
-        </div>
-        <div class="indicator-item">
-            <span class="label">UF</span>
-            <span id="valor-uf" class="value">...</span>
-        </div>
+        <div class="indicator-item">USD <span id="valor-dolar">...</span></div>
+        <div class="indicator-item">UF <span id="valor-uf">...</span></div>
     </div>
 
     <div class="header-title">
         <h1>Integral Inox</h1>
+    </div>
+
+    <div class="menu-toggle" id="mobile-menu" style="display: none;">
+        <span class="bar" style="display:block; width:25px; height:3px; background:white; margin:4px 0;"></span>
+        <span class="bar" style="display:block; width:25px; height:3px; background:white; margin:4px 0;"></span>
+        <span class="bar" style="display:block; width:25px; height:3px; background:white; margin:4px 0;"></span>
     </div>
 
     <nav class="header-nav">
@@ -142,6 +142,24 @@
             header.classList.remove('compacto');
         }
     });
+
+    // Lógica para el menú hamburguesa
+const menuBtn = document.getElementById('mobile-menu');
+const navLinks = document.querySelector('.header-nav');
+
+menuBtn.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+    
+    // Animación opcional para las barritas (forma una X)
+    menuBtn.classList.toggle('is-active');
+});
+
+// Cerrar el menú automáticamente al hacer clic en una sección
+document.querySelectorAll('.header-nav a').forEach(link => {
+    link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+    });
+});
 </script>
 
 </body>
