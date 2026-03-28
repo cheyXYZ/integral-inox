@@ -476,12 +476,47 @@ footer {
     }
 
     /* Esto debe ir DENTRO de @media (max-width: 768px) */
-.menu-toggle {
-    display: block !important; /* Forzamos que aparezca */
-    cursor: pointer;
-    width: 30px;
-    height: 30px;
-    z-index: 1001; /* Por encima de todo */
+@media (max-width: 768px) {
+    /* Contenedor principal del header en móvil */
+    .header-minimal {
+        display: flex;
+        flex-direction: row; /* Volvemos a fila para que logo y botón estén al lado */
+        flex-wrap: wrap; /* Pero permitimos que indicadores bajen o suban */
+        justify-content: space-between;
+        align-items: center; 
+        padding: 10px 20px;
+    }
+
+    /* Forzamos que el título ocupe el centro pero deje espacio al botón */
+    .header-title {
+        flex: 1;
+        text-align: left; /* Alineado a la izquierda queda mejor con el botón a la derecha */
+    }
+
+    .header-title h1 {
+        font-size: 1.2rem;
+        margin: 0;
+    }
+
+    /* El botón ahora se alinea automáticamente por el flex del padre */
+    .menu-toggle {
+        display: flex !important;
+        flex-direction: column;
+        justify-content: center;
+        cursor: pointer;
+        width: 30px;
+        height: 30px;
+        margin-left: 10px;
+    }
+
+    /* Los indicadores los ponemos arriba centrados para que no molesten */
+    .header-indicators {
+        width: 100%;
+        order: -1; /* Esto los tira arriba del todo */
+        justify-content: center;
+        margin-bottom: 10px;
+        display: flex;
+    }
 }
 
 .bar {
@@ -530,6 +565,46 @@ footer {
         width: 100%;
         text-align: center;
     }
+
+    /* --- ESTO VA DENTRO DEL MEDIA QUERY EXISTENTE --- */
+@media (max-width: 768px) {
+    
+    /* ... (tus códigos anteriores del header aquí) ... */
+
+    /* 1. Cambiamos el contenedor flex a columna */
+    .welcome-flex {
+        flex-direction: column !important; /* Apila los elementos verticalmente */
+        text-align: center; /* Centra todo el texto */
+        align-items: center; /* Centra los elementos horizontalmente */
+        gap: 20px; /* Espacio entre el texto y la imagen */
+    }
+
+    /* 2. Ajustamos el ancho de las columnas para que ocupen todo el celular */
+    .welcome-text, 
+    .welcome-image-container {
+        width: 100% !important;
+        min-width: unset !important; /* Eliminamos anchos mínimos molestos */
+        max-width: 100% !important;
+        padding: 0 15px; /* Pequeño colchón a los lados */
+    }
+
+    /* 3. Aseguramos que la imagen se vea grande pero centrada */
+    .foto-taller {
+        max-width: 90% !important; /* Para que no toque los bordes del celular */
+        height: auto;
+        margin: 0 auto; /* Centrado automático */
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    /* 4. Ajuste opcional para el título "Bienvenidos" */
+    #inicio h2 {
+        font-size: 1.8rem;
+        margin-bottom: 15px;
+    }
+}
+/* --- FIN DEL BLOQUE A AÑADIR --- */
+
 }
 
 /* En escritorio, el botón hamburguesa debe estar oculto */
